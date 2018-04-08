@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://localhost:4000/poetry/life-a-miracle/</loc>
+<lastmod>2018-03-26T00:00:00+05:45</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/poetry/%E0%A4%85%E0%A4%95%E0%A4%BF%E0%A4%9E-%E0%A4%9A%E0%A4%BF%E0%A4%A4-%E0%A4%85%E0%A4%B0-%E0%A4%A7%E0%A4%AE%E0%A5%81%E0%A4%A6%E0%A4%BF%E0%A4%A4-%E0%A4%A4%E0%A4%BF-%E0%A4%A8%E0%A4%AF%E0%A4%A8/</loc>
+<lastmod>2018-04-08T00:00:00+05:45</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/googleb832056481761258.html</loc>
+<lastmod>2018-04-08T10:22:40+05:45</lastmod>
 </url>
 </urlset>
