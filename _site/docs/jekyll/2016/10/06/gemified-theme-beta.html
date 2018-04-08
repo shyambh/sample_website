@@ -1,0 +1,74 @@
+<p>Hot on the heels of Jekyll v3.3.0 is a beta release of Minimal Mistakes… as a gemified theme.</p>
+
+<p><a href="https://rubygems.org/gems/minimal-mistakes-jekyll"><code class="highlighter-rouge">minimal-mistakes-jekyll</code></a> can only be used with Jekyll proper. If you’re hosting on GitHub Pages or using that gem the theme won’t work. 3rd party themes haven’t been white-listed so it’s a no go for now.</p>
+
+<p>Fine with all that? Great. Let’s continue.</p>
+
+<p>If you’re migrating a site already using Minimal Mistakes and haven’t customized any of the <code class="highlighter-rouge">_includes</code>, <code class="highlighter-rouge">_layouts</code>, <code class="highlighter-rouge">_sass</code> partials, or <code class="highlighter-rouge">assets</code> this should be quick and painless.</p>
+
+<h2 id="step-1-remove-theme-files">Step 1: Remove Theme Files</h2>
+
+<p>Remove <code class="highlighter-rouge">_includes</code>, <code class="highlighter-rouge">_layouts</code>, <code class="highlighter-rouge">_sass</code>, <code class="highlighter-rouge">assets</code> folders and files within. You won’t need these anymore as they’re bundled in the theme.</p>
+
+<p>If you customized any of these then leave them alone and only remove the untouched ones. If setup correctly your modified versions should act as <a href="http://jekyllrb.com/docs/themes/#overriding-theme-defaults">overrides</a> to the versions bundled with the theme.</p>
+
+<h2 id="step-2-update-gemfile">Step 2: Update <code class="highlighter-rouge">Gemfile</code></h2>
+
+<p>Replace <code class="highlighter-rouge">gem "github-pages</code> or <code class="highlighter-rouge">gem "jekyll"</code> with <code class="highlighter-rouge">gem "jekyll", "~&gt; 3.3.0"</code>. You’ll need the latest version of Jekyll<sup id="fnref:update-jekyll"><a href="#fn:update-jekyll" class="footnote">1</a></sup> for Minimal Mistakes to work and load all of the /assets/ properly.</p>
+
+<p>Add the Minimal Mistakes theme gem:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s2">"minimal-mistakes-jekyll"</span>
+</code></pre></div></div>
+
+<p>When finished your <code class="highlighter-rouge">Gemfile</code> should look something like this:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">source</span> <span class="s2">"https://rubygems.org"</span>
+
+<span class="n">gem</span> <span class="s2">"jekyll"</span><span class="p">,</span> <span class="s2">"~&gt; 3.3.0"</span>
+<span class="n">gem</span> <span class="s2">"minimal-mistakes-jekyll"</span>
+</code></pre></div></div>
+
+<h2 id="step-3-run-bundler">Step 3: Run Bundler</h2>
+
+<p>Run <code class="highlighter-rouge">bundle install</code> (or <code class="highlighter-rouge">bundle update</code> if you’re updating an existing repo) to install/update Jekyll and the theme.</p>
+
+<h2 id="step-4-install-the-theme">Step 4: Install the Theme</h2>
+
+<p>Add <code class="highlighter-rouge">theme: "minimal-mistakes-jekyll"</code> to your <code class="highlighter-rouge">_config.yml</code> file.</p>
+
+<p>If you’re migrating from an existing Minimal Mistakes site you shouldn’t have to change anything else after this. If it’s a new site consult then docs to <a href="/docs/configuration/">properly config</a>.</p>
+
+<p class="notice--danger"><strong>Please Note:</strong> Paths for image headers, overlays, teasers, <a href="/docs/helpers/#gallery">galleries</a>, and <a href="/docs/helpers/#feature-row">feature rows</a> have changed and now require a full path. Instead of just <code class="highlighter-rouge">image: filename.jpg</code> you’ll need to use the full path eg: <code class="highlighter-rouge">image: assets/images/filename.jpg</code>. The preferred location is now <code class="highlighter-rouge">assets/images</code> but can be placed elsewhere or external hosted. This all applies for image references in <code class="highlighter-rouge">_config.yml</code> and <code class="highlighter-rouge">author.yml</code> as well.</p>
+
+<h2 id="step-5-jekyll-new-tweaks">Step 5: <code class="highlighter-rouge">jekyll new</code> Tweaks</h2>
+
+<p>If this is a new site be sure to add the following files to <code class="highlighter-rouge">_data/</code> and customize as you see fit. There is currently no way of bundling them in with the theme, so be sure to consult the docs on how to properly use both.</p>
+
+<ul>
+  <li><a href="https://github.com/mmistakes/minimal-mistakes/blob/master/_data/ui-text.yml"><code class="highlighter-rouge">_data/ui-text.yml</code></a> - UI text <a href="/docs/ui-text/">documentation</a></li>
+  <li><a href="https://github.com/mmistakes/minimal-mistakes/blob/master/_data/navigation.yml"><code class="highlighter-rouge">_data/navigation.yml</code></a> - navigation <a href="/docs/navigation/">documentation</a></li>
+</ul>
+
+<p>You’ll also need to:</p>
+
+<ul>
+  <li>Replace <code class="highlighter-rouge">&lt;site root&gt;/index.html</code> with a modified <a href="https://github.com/mmistakes/minimal-mistakes/blob/master/index.html">Minimal Mistakes <code class="highlighter-rouge">index.html</code></a>.</li>
+  <li>Change <code class="highlighter-rouge">layout: post</code> in <code class="highlighter-rouge">_posts/0000-00-00-welcome-to-jekyll.markdown</code> to <code class="highlighter-rouge">layout: single</code>.</li>
+  <li>Remove <code class="highlighter-rouge">about.md</code>, or at the very least change <code class="highlighter-rouge">layout: page</code> to <code class="highlighter-rouge">layout: single</code> and remove references to <code class="highlighter-rouge">icon-github.html</code> (or <a href="https://github.com/jekyll/minima/tree/master/_includes">copy to your <code class="highlighter-rouge">_includes</code></a> if using).</li>
+</ul>
+
+<hr />
+
+<p>That’s it! If all goes well running <code class="highlighter-rouge">bundle exec jekyll serve</code> should spin-up your site. If you encounter any bumps please file an issue on GitHub and make sure to indicate you’re testing the pre-release Ruby gem version.</p>
+
+<p><a href="https://github.com/mmistakes/minimal-mistakes/issues/new" class="btn btn--info btn--large">File an issue</a></p>
+
+<p>Thanks!</p>
+<div class="footnotes">
+  <ol>
+    <li id="fn:update-jekyll">
+      <p>You could also run <code class="highlighter-rouge">bundle update jekyll</code> to update Jekyll. <a href="#fnref:update-jekyll" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
