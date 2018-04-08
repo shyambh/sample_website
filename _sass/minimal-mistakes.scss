@@ -38,3 +38,21 @@
 @import "minimal-mistakes/archive";
 @import "minimal-mistakes/sidebar";
 @import "minimal-mistakes/print";
+
+figcaption {
+  padding: 0.6px;
+  font-family: 'Cherry Swash', cursive;
+  font-size: 0.65em;
+  font-weight: 100;
+  border: none;
+  background: transparent;
+  word-wrap:normal;
+  text-align: center;
+}
+
+figure img {
+    //width: 100%;
+    border-radius: 4px;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}

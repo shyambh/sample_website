@@ -4,6 +4,14 @@ categories:
   - poetry
 ---
 
+{% include base_path %}
+
+<img src="/assets/images/sunset.jpg" width="400" title="Sunset">
+
+<figure>
+  <figcaption>Photo from Unsplash</figcaption>
+</figure>
+
 Life is a miracle if you want it to be  
 Or, an endless tunnel, with no light you can see  
 But the sun, the moon and the air is the same  

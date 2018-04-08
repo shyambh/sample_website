@@ -13,12 +13,12 @@
 # theme                  : "minimal-mistakes-jekyll"
 remote_theme             : "mmistakes/minimal-mistakes"
 #minimal_mistakes_skin    : "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
-minimal_mistakes_skin    : "air"
+minimal_mistakes_skin    : "dark"
 
 # Site Settings
 locale                   : "en-US"
 title                    : "Shyam's Rant-Page"
-title_separator          : "-"
+title_separator          : "|"
 name                     : "Shyam Bhattarai"
 description              : "Welcome to my page. I am a software engineer by profession and a five year old at heart.
                             Here I will blurt out whatever comes into my mind with minimum
@@ -36,8 +36,7 @@ comments:
     shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
     server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
-  facebook:
-     #https://developers.facebook.com/docs/plugins/comments
+  facebook:               #https://developers.facebook.com/docs/plugins/comments
     appid                :
     num_posts            : # 5 (default)
     colorscheme          : # "light" (default), "dark"
@@ -271,3 +270,21 @@ defaults:
       comments:  true
       share: true
       related: true
+
+picture:
+  source: "/assets/images/_fullsize"
+  output: "/assets/images/generated"
+  markup: "picture"
+  presets:
+    default:
+      ppi: [1, 1.5]
+      source_large:
+        media: "(min-width: 800px)"
+        width: "800"
+      source_medium:
+        media: "(min-width: 600px)"
+        width: "600"
+      source_default:
+        width: "300"
+
+markdown: redcarpet
