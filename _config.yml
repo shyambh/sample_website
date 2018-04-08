@@ -270,21 +270,3 @@ defaults:
       comments:  true
       share: true
       related: true
-
-picture:
-  source: "/assets/images/_fullsize"
-  output: "/assets/images/generated"
-  markup: "picture"
-  presets:
-    default:
-      ppi: [1, 1.5]
-      source_large:
-        media: "(min-width: 800px)"
-        width: "800"
-      source_medium:
-        media: "(min-width: 600px)"
-        width: "600"
-      source_default:
-        width: "300"
-
-markdown: redcarpet
