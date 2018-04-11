@@ -1,4 +1,9 @@
 var store = [{
+        "title": "कौसी",
+        "excerpt":"Me with Mom and Dad. Good times.बिरलै म हासेँ बादल परबाटै देखिन्छम आफ्नो छतमा उभिएर हेर्छुक्षितिजसम्मको दृष्टिगोचर.. पहाडका टुप्पातिरलस्करै उभिएकारुखहरुका हाँगाका पातहरुलाईकुत्कुताउँदैमतिर बडो बेगले दौडिन्छत्यो अलमस्त फुक्का पवनपुञ्जसिर्रर - सिर्ररमेरो ओँठ, मेरो केशमेरो चस्मा, मेरो कुर्ताको फेँदएकपटक लाटो रिसमा चुर्लुम्मडुबेको झैँ गर्दैटाँसिन आइपुग्छ त्यो उत्ताउलोपवन-झोक्का मा अघिजस्तै छतमा उभिएर हेर्दैछुपर...","categories": ["poetry"],
+        "tags": [],
+        "url": "http://localhost:4000/poetry/%E0%A4%95%E0%A5%8C%E0%A4%B8%E0%A5%80/",
+        "teaser":"http://localhost:4000/assets/images/sunset.jpg"},{
         "title": "Life : A Miracle",
         "excerpt":"Photo from UnsplashLife is a miracle if you want it to beOr, an endless tunnel, with no light you can seeBut the sun, the moon and the air is the sameyou can live in a moment&#8217;s blush, or you can die again I wish I was a mystic, high up...","categories": ["poetry"],
         "tags": [],
@@ -13,4 +18,9 @@ var store = [{
         "excerpt":"Kamalpokhari : Early Dawnअकिञ्चित, अर्धमुदित ति नयनबिहानीको किरण जस्तैहृदयभित्र ब्यूँतिएका हजार सपनाहरु जस्तैआकाशका ति उज्याला हीराका टुक्राहरुकपालमा सिउरिएर उडिरहेकी तिमीविपनाभन्दा पनि सपनाझैँ बढी लाग्ने तिमीनाम पनि त भनिनौ बोलाउनलाईकारण पनि त छाडिनौ सम्झिरहनलाई अकिञ्चित, अर्धमुदित ति नयनरातको कोमल सुवास जस्तैतिमी कुनै नलेखिएको कविताको हरफजस्तैकुनै नागाईएको गज़लको बान्की जस्तैगाजल पनि त...","categories": ["poetry"],
         "tags": [],
         "url": "http://localhost:4000/poetry/%E0%A4%85%E0%A4%95%E0%A4%BF%E0%A4%9E-%E0%A4%9A%E0%A4%BF%E0%A4%A4-%E0%A4%85%E0%A4%B0-%E0%A4%A7%E0%A4%AE%E0%A5%81%E0%A4%A6%E0%A4%BF%E0%A4%A4-%E0%A4%A4%E0%A4%BF-%E0%A4%A8%E0%A4%AF%E0%A4%A8/",
+        "teaser":"http://localhost:4000/assets/images/sunset.jpg"},{
+        "title": "Circus",
+        "excerpt":"Photo Credit unsplash-logoBecky PhanWhen the world outsideKeeps burning like hellclose your curtainsand enjoy the show You have something nowthat you&#8217;d lost beforenow make a promisethat you&#8217;ll never let it go Life is a grand circusthe biggest of it&#8217;s kindthe one&#8217;s trying to convince you otherwisemust surely be dead blindHere, in...","categories": ["poetry"],
+        "tags": [],
+        "url": "http://localhost:4000/poetry/circus/",
         "teaser":"http://localhost:4000/assets/images/sunset.jpg"}]
