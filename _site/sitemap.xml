@@ -21,6 +21,10 @@
 <lastmod>2018-04-11T00:00:00+05:45</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/cooking/shyam's-mutton-curry-special/</loc>
+<lastmod>2018-04-17T00:00:00+05:45</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/about/</loc>
 </url>
 <url>
@@ -83,6 +87,9 @@
 </url>
 <url>
 <loc>http://localhost:4000/year-archive/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/page2/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/googleb832056481761258.html</loc>

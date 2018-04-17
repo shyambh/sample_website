@@ -2,6 +2,8 @@
 title: "Life : A Miracle"
 categories:
   - poetry
+header:
+    teaser: /assets/images/sunset.jpg
 ---
 
 {% include base_path %}

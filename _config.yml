@@ -27,7 +27,7 @@ description              : "Welcome to my page. I am a software engineer by prof
 url                      : http://shyambhattarai.com.np/ # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : shyambh/sample_website # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
-teaser                   : /assets/images/sunset.jpg # path of fallback teaser image, e.g. "/assets/images/500x300.png"
+teaser                   : # /assets/images/sunset.jpg # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 150
 comments:
