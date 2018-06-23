@@ -24,8 +24,18 @@ var store = [{
         "tags": [],
         "url": "http://localhost:4000/poetry/circus/",
         "teaser":"https://images.unsplash.com/photo-1435034568314-8303dbda4b8c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c48ac79506b3126f0ecfd5833e38973e&auto=format&fit=crop&w=752&q=80"},{
-        "title": "Mutton Curry : Less is More Indeed",
+        "title": "Mutton Curry for Dummies",
         "excerpt":"Confession Despite all the hullabaloo behind me cooking a rare mutton curry to delight the taste-buds, I would have to stop beating behind the bush and thank my Mom for teaching me all that I know, and I know very little, about cookery. Sure, I have no right to boast...","categories": ["cooking"],
         "tags": [],
         "url": "http://localhost:4000/cooking/shyam's-mutton-curry-special/",
-        "teaser":"http://localhost:4000/assets/images/mutton_curry_post/teaser.jpg"}]
+        "teaser":"http://localhost:4000/assets/images/mutton_curry_post/teaser.jpg"},{
+        "title": "ऐनाभित्रको मान्छे",
+        "excerpt":"ऐनाभित्रको मान्छेऐना भित्रको मान्छेऐना बाहिरको मान्छेके एक हुन् ?ती एक हुन? मनभित्रको आँधीबिछोडिएको साथीके एक हुन्?के एक हुन्? म सक्दिन उसलाई छुनसक्दिन म उसलाई भन्नविगतका पानाहरूचाहँदैमा मेटिदैनलुकाएको सिरानीमासपना भोलि भेटिदैन कोर्न त सकिन्नन्पानाहरू खाली नै उडिरहन्छन्नदेखिए पनि तीझन् झन् सलबलाईरहन्छन् हावाहरूमा उडिरहेकाभावनाका शीतहरूरुमल्लिदै हिँडिरहेकाचाहनाका गीतहरू एकान्तको मायान दाहिने छु न...","categories": ["poetry"],
+        "tags": [],
+        "url": "http://localhost:4000/poetry/%E0%A4%90%E0%A4%A8%E0%A4%BE%E0%A4%AD%E0%A4%BF%E0%A4%A4-%E0%A4%B0%E0%A4%95%E0%A5%8B-%E0%A4%AE%E0%A4%BE%E0%A4%A8-%E0%A4%9B%E0%A5%87/",
+        "teaser":"https://images.unsplash.com/photo-1435034568314-8303dbda4b8c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c48ac79506b3126f0ecfd5833e38973e&auto=format&fit=crop&w=752&q=80"},{
+        "title": "Revelations",
+        "excerpt":"Break the chainsthe very ones that bind youthe ones that were traded to youby the merchants of lust and dreams Break the linethe line that was setby the sheep O’ so blindwho thinks you’re one of it’s kind Think of the peoplewho live in the shadowsfor the world has decidedto...","categories": ["poetry"],
+        "tags": [],
+        "url": "http://localhost:4000/poetry/Revelations/",
+        "teaser":"http://localhost:4000/assets/images/kamal.jpg"}]

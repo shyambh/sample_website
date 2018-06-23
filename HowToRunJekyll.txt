@@ -1,0 +1,1 @@
+Hit 'jekyll serve' command to run the jekyll pages locally
