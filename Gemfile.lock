@@ -24,7 +24,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     fastimage (1.6.8)
       addressable (~> 2.3, >= 2.3.5)
-    ffi (1.9.23)
+    ffi (1.11.1)
     filesize (0.1.1)
     forwardable-extended (2.6.0)
     gemoji (3.0.0)
