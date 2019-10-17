@@ -38,4 +38,9 @@ var store = [{
         "excerpt":"Break the chainsthe very ones that bind youthe ones that were traded to youby the merchants of lust and dreams Break the linethe line that was setby the sheep O’ so blindwho thinks you’re one of it’s kind Think of the peoplewho live in the shadowsfor the world has decidedto...","categories": ["poetry"],
         "tags": [],
         "url": "http://localhost:4000/poetry/Revelations/",
-        "teaser":"http://localhost:4000/assets/images/kamal.jpg"}]
+        "teaser":"http://localhost:4000/assets/images/kamal.jpg"},{
+        "title": "Grafana for real time JMeter test monitoring",
+        "excerpt":"Motivation The JMeter tests run are run in a periodic basis as part of thescheduled performance tests. The test reports including various metricsand details are generated after the completion of the test run. It wouldbe advantageous to the team if the test status could be monitored inreal time so that...","categories": ["technology"],
+        "tags": [],
+        "url": "http://localhost:4000/technology/implementing-grafana-with-influxdb-telegraf/",
+        "teaser":"http://localhost:4000/assets/images/grafana_post/grafana_logo.jpg"}]

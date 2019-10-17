@@ -1,0 +1,1029 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.11.1 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Grafana for real time JMeter test monitoring | Shyam’s Rant-Page</title>
+<meta name="description" content="Motivation">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Shyam's Rant-Page">
+<meta property="og:title" content="Grafana for real time JMeter test monitoring">
+<meta property="og:url" content="http://localhost:4000/technology/implementing-grafana-with-influxdb-telegraf/">
+
+
+  <meta property="og:description" content="Motivation">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/grafana_post/grafana_logo.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2019-10-13T00:00:00+05:45">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/technology/implementing-grafana-with-influxdb-telegraf/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Shyam Bhattarai",
+      "url": "http://localhost:4000",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Shyam's Rant-Page Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!--<script src=" "></script>-->
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">Shyam's Rant-Page</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/" >Home</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/about" >About</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/year-archive/" >Posts By Year</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/collection-archive/" >Collections</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="https://gravatar.com/avatar/af06fbb3fffb103314a24d6914098122?s=200" alt="Shyam Bhattarai" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Shyam Bhattarai</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Seeking, searching
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Kathmandu, Nepal</span>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:bhattaraishyam@gmail.com">
+            <meta itemprop="email" content="bhattaraishyam@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/shyambh404" itemprop="sameAs">
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://www.facebook.com/shyambh" itemprop="sameAs">
+            <i class="fab fa-fw fa-facebook-square" aria-hidden="true"></i> Facebook
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.linkedin.com/in/shyam-bhattarai-65254963/" itemprop="sameAs">
+            <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://bitbucket.org/shyambh" itemprop="sameAs">
+            <i class="fab fa-fw fa-bitbucket" aria-hidden="true"></i> Bitbucket
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://github.com/shyambh" itemprop="sameAs">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        
+          <li>
+            <a href="https://www.youtube.com/channel/UCBcYIZPASUvUhxW5KnJsR7g" itemprop="sameAs">
+              <i class="fab fa-fw fa-youtube" aria-hidden="true"></i> YouTube
+            </a>
+          </li>
+        
+      
+
+      
+        <li>
+          <a href="https://soundcloud.com/shyam-bhattarai" itemprop="sameAs">
+            <i class="fab fa-fw fa-soundcloud" aria-hidden="true"></i> SoundCloud
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Grafana for real time JMeter test monitoring">
+    <meta itemprop="description" content="Motivation">
+    <meta itemprop="datePublished" content="October 13, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Grafana for real time JMeter test monitoring
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  10 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-compass"></i> Sections</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#motivation">Motivation</a></li>
+  <li><a href="#architecture">Architecture</a></li>
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#installation">Installation</a>
+    <ul>
+      <li><a href="#grafana">Grafana</a></li>
+      <li><a href="#influxdb">InfluxDB</a></li>
+    </ul>
+  </li>
+  <li><a href="#configurations">Configurations</a>
+    <ul>
+      <li><a href="#jmx-configuration">JMX Configuration</a></li>
+      <li><a href="#linking-grafana-and-influxdb">Linking Grafana and InfluxDB</a></li>
+    </ul>
+  </li>
+  <li><a href="#telegraf">Telegraf</a>
+    <ul>
+      <li><a href="#installing-telegraf-as-a-windows-service">Installing Telegraf as a Windows Service</a></li>
+    </ul>
+  </li>
+</ul>
+            </nav>
+          </aside>
+        
+        <h2 id="motivation">Motivation</h2>
+
+<p>The JMeter tests run are run in a periodic basis as part of the
+scheduled performance tests. The test reports including various metrics
+and details are generated after the completion of the test run. It would
+be advantageous to the team if the test status could be monitored in
+real time so that any evidence of a correlation between the failing
+components could be established.</p>
+
+<h2 id="architecture">Architecture</h2>
+<figure class="align-center">
+  <a href="http://localhost:4000/assets/images/grafana_post/architecture.jpg">
+  <img src="http://localhost:4000/assets/images/grafana_post/architecture.jpg" alt="" />
+  </a>
+</figure>
+
+<p><strong>Telegraf</strong> : Collects the server metrics via an installed agent and stores it in InfluxDB backend<br />
+<strong>JMeter</strong> : Sends the test stats to InfluxDB using BackendListener listener<br />
+<strong>InfluxDB</strong> : Stores the metrics collected<br />
+<strong>Grafana</strong> : Finally, these metrics are visible via Grafana dashboards</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Grafana is an open source, real time metrics visualization tool
+which supports a plethora of <a href="https://grafana.com/docs/features/datasources/#supported-data-sources">data
+sources</a>
+including InfluxDB, Elasticsearch, MySQL, MSSQL, etc. The tool can
+either be ran locally or can be hosted in <a href="https://grafana.com/cloud#pricing"><em>Grafana
+Cloud</em></a> as well. For this
+documentation, we will be looking at the steps to install the tool
+locally and add other dependencies along the way. There is a nice
+collection of visualization options to show the metrics which are highly
+customizable.</p>
+
+<h2 id="installation">Installation</h2>
+
+<h3 id="grafana"><strong>Grafana</strong></h3>
+
+<p>Latest version of Grafana can be installed from
+<a href="https://grafana.com/get">here</a> which also provides the option to
+install it locally or use it in a hosted environment. After the
+download is complete, the service should up and Grafana should be
+available at <a href="http://localhost:3000">http://localhost:3000</a>.</p>
+
+<h3 id="influxdb"><strong>InfluxDB</strong></h3>
+
+<p>After Grafana is successfully installed, the next step is to install
+ the backend service, which in this case is InfluxDB. InfluxDB is an
+ open source <a href="https://www.influxdata.com/time-series-database/">time series
+ database</a> which is
+ optimized for time-stamped series data and can be downloaded from
+ <a href="https://portal.influxdata.com/downloads/">here</a>. After the
+ installation is complete, the folder structure is created as follows:</p>
+
+<figure class="align-center">
+  <a href="http://localhost:4000/assets/images/grafana_post/img_1.jpg">
+  <img src="http://localhost:4000/assets/images/grafana_post/img_1.jpg" alt="" />
+  </a>
+</figure>
+
+<p>Among these files, ‘<em>influx.exe</em>’ is a CLI used to execute Influx Query
+Language (InfluxQL) commands and navigate the database. The
+‘<em>influxd.exe</em>’ application is used to launch the InfluxDB server. The
+‘<em>influxdb.conf</em>’ file is the config file that can be edited to
+configure the features. It can also be installed and run as a Windows
+service. The server needs to be up in order to access the database.
+InfluxDB also provides an http endpoint to allow interaction with the
+database. In order to enable it, the ‘influxdb.conf’ file needs to be
+edited with the changes below :</p>
+
+<figure class="align-center">
+  <a href="http://localhost:4000/assets/images/grafana_post/img_2.jpg">
+  <img src="http://localhost:4000/assets/images/grafana_post/img_2.jpg" alt="" />
+  <figcaption>Fig. Enabling the HTTP endpoint service and setting up the port address</figcaption>
+  </a>
+</figure>
+
+<p>This enables the endpoint service. This can be verified with the
+PowerShell command ‘curl <a href="http://localhost:8086/ping">http://localhost:8086/ping</a>’. The result
+should be as below :</p>
+
+<figure class="align-center">
+  <a href="http://localhost:4000/assets/images/grafana_post/img_3.jpg">
+  <img src="http://localhost:4000/assets/images/grafana_post/img_3.jpg" alt="" />
+  <figcaption>Fig.Verifying that the InfluxDB endpoint is active
+</figcaption>
+  </a>
+</figure>
+
+<p>First, a database needs to be created in InfluxDB to hold the sample
+data from JMeter. To do this, first the influx CLI needs to be opened.</p>
+
+<figure class="align-center" style="width: 480px">
+  <a href="http://localhost:4000/assets/images/grafana_post/img_4.jpg">
+  <img src="http://localhost:4000/assets/images/grafana_post/img_4.jpg" alt="" />
+  <figcaption>Fig.Starting the InfluxDB CLI</figcaption>
+  </a>
+</figure>
+
+<p>Typing in ‘<em>influx</em>’ will run the InfluxDB CLI. ‘<em>show databases</em>’ can
+be used to view the existing databases. Currently, there should be just
+one database with the name ‘<em>_internal</em>’. This database holds
+information pertaining to InfluxDB itself and is auto-generated during
+the installation. The command to create a new database is ‘<em>create
+database &lt;database-name&gt;</em>’.</p>
+
+<p>The database is created as follows, where the database name is set up as
+<strong>jmeterStress</strong>.</p>
+
+<figure class="align-center" style="width: 320px">
+  <a href="http://localhost:4000/assets/images/grafana_post/img_5.jpg">
+  <img src="http://localhost:4000/assets/images/grafana_post/img_5.jpg" alt="" />
+  <figcaption>Fig.Creating a new database</figcaption>
+  </a>
+</figure>
+
+<h2 id="configurations"><strong>Configurations</strong></h2>
+<p>There are a couple of configurations which needs be done on JMeter as well as Grafana in order to generate the measurements and display the live results.</p>
+
+<h3 id="jmx-configuration"><strong>JMX Configuration</strong></h3>
+
+<p>Since, the test data needs to be written to the InfluxDB in real-time, a
+‘<em>Backend Listener</em>’ needs to be added to the existing test plan. A
+plugin
+‘<a href="https://github.com/NovatecConsulting/JMeter-InfluxDB-Writer/releases/">JMeter-InfluxDB-Writer</a>’
+needs to downloaded in order to write the data to InfluxDB so that the
+Grafana JMeter dashboard can integrate seamlessly without much
+configuration being needed.</p>
+
+<p>Below are the steps to configure the backend listener in JMeter:</p>
+
+<ol>
+  <li>
+    <p>Add the Backend Listener to the test plan</p>
+  </li>
+  <li>
+    <p>Configure the Backend Listener as follows:</p>
+
+    <figure class="align-center">
+<a href="http://localhost:4000/assets/images/grafana_post/img_6.jpg">
+<img src="http://localhost:4000/assets/images/grafana_post/img_6.jpg" alt="" />
+<figcaption>Fig.Configuring the BackendListener options in JMeter</figcaption>
+</a>
+</figure>
+
+    <p>‘<strong>testName</strong>’ is the name of the test.</p>
+
+    <p>‘<strong>influxDBHost</strong>’ and ‘<em>influxDBPort</em>’ are set as according to the
+InfluxDB host and port addresses.</p>
+
+    <p>‘<strong>influxDBUser</strong>’ and ‘<em>influxDBPassword</em>’ are the user credentials
+for the InfluxDB.</p>
+
+    <p>‘<strong>influxDBDatabase</strong>’ is the target DB to store the data.</p>
+  </li>
+</ol>
+
+<h3 id="linking-grafana-and-influxdb"><strong>Linking Grafana and InfluxDB</strong></h3>
+
+<p>Now that InfluxDB and Grafana are set up, the connection between the two
+needs to be established as well. Below are the steps to achieve this :</p>
+
+<h4 id="add-datasource"><strong>Add datasource</strong></h4>
+
+<p>Navigate to <a href="http://localhost:3000">http://localhost:3000</a> or wherever Grafana is being
+hosted. At the start a login page is displayed where the default
+username and password values are ‘admin’ and the password can be
+changed after the login.</p>
+
+<figure class="align-center">
+    <a href="http://localhost:4000/assets/images/grafana_post/img_7.jpg">
+    <img src="http://localhost:4000/assets/images/grafana_post/img_7.jpg" alt="" />
+    <figcaption>Fig.Grafana : Login page</figcaption>
+    </a>
+</figure>
+
+<p>After the login, the user is directed towards the default dashboard.
+Currently, it holds the options to add a new data source, create a
+new dashboard, add users, etc.</p>
+
+<p>Click on ‘Add data source’ to configuration database connection.</p>
+
+<figure class="align-center">
+    <a href="http://localhost:4000/assets/images/grafana_post/img_8.jpg">
+    <img src="http://localhost:4000/assets/images/grafana_post/img_8.jpg" alt="" />
+    <figcaption>Fig.Grafana : Default Dashboard</figcaption>
+    </a>
+</figure>
+
+<p>Then a time series database can be selected from the list of options
+presented. After selecting ‘InfluxDB’ there, a configuration page
+opens where the specific details can be configured.</p>
+
+<figure class="align-center">
+    <a href="http://localhost:4000/assets/images/grafana_post/img_9.jpg">
+    <img src="http://localhost:4000/assets/images/grafana_post/img_9.jpg" alt="" />
+    <figcaption>Fig.Data source configuration in Grafana</figcaption>
+    </a>
+</figure>
+
+<p>After configuring the database details and clicking ‘<strong>Save &amp;
+Test</strong>’ button, a message saying ‘Data Source is working’ should be
+displayed.</p>
+
+<h4 id="create-a-dashboard"><strong>Create a Dashboard</strong></h4>
+
+<p>The next step after configuring the data source is to create a
+dashboard. There are plenty of options to choose here as well since
+Grafana provides a great variety of dashboard template to choose
+from.</p>
+
+<p>This option can be selected by clicking on the ‘+’ icon at the
+top-left corner of the menu and selecting ‘<strong>Import</strong>’ under the
+create sub-menu. For our implementation we have used
+<a href="https://grafana.com/grafana/dashboards/1152">this</a> dashboard which
+has all the basic visualization options. The dashboard can be
+imported by either supplying it’s dashboard ID or it’s JSON file.</p>
+
+<figure class="align-center">
+    <a href="http://localhost:4000/assets/images/grafana_post/img_10.jpg">
+    <img src="http://localhost:4000/assets/images/grafana_post/img_10.jpg" alt="" />
+    <figcaption>Fig.Importing the dashboard template</figcaption>
+    </a>
+</figure>
+
+<p>After the import is completed, a dashboard with empty visualizations
+is generated. By default, the time period filter for which the
+report is to be shown will be ‘<strong>Yesterday</strong>’ with a ‘<strong>Aggregation
+Interval</strong>’ of 1 minute. The ‘Aggregation Interval’ is the interval
+at which the data is fetched from the backend. Here, we change it to
+1s to collect the data every second. Also, we change the time filter
+from ‘Yesterday’ to ‘Last 5 minutes’ to show the latest results.</p>
+
+<figure class="align-center">
+    <a href="http://localhost:4000/assets/images/grafana_post/img_11.jpg">
+    <img src="http://localhost:4000/assets/images/grafana_post/img_11.jpg" alt="" />
+    <figcaption>Fig.Changing the ‘Aggregation Interval’ to 1s and time
+filter to ‘Last 5 minutes’</figcaption>
+    </a>
+</figure>
+
+<p><strong>Running the JMeter Tests</strong></p>
+
+<p>To verify whether the set up is successful, the JMeter test plan can
+be run. As soon as the test are running, the commands below can be
+used to verify if the data are getting stored in InfluxDB.</p>
+
+<figure class="align-center">
+    <a href="http://localhost:4000/assets/images/grafana_post/img_12.jpg">
+    <img src="http://localhost:4000/assets/images/grafana_post/img_12.jpg" alt="" />
+    <figcaption>Fig.The metrics are being collected and visualized in real
+time’</figcaption>
+    </a>
+</figure>
+
+<p>Also, the database is collecting the metrics live from JMeter which
+can be verified as below :</p>
+
+<figure class="align-center" style="width:380px">
+    <a href="http://localhost:4000/assets/images/grafana_post/img_13.jpg">
+    <img src="http://localhost:4000/assets/images/grafana_post/img_13.jpg" alt="" />
+    <figcaption>Fig.Verifying whether the measurements are being collected</figcaption>
+    </a>
+</figure>
+
+<p>In InfluxDB, ‘<strong>measurements’</strong> can be thought of as tables. Each of
+these measurements has a timestamped value can be queried like below :</p>
+
+<figure class="align-center">
+    <a href="http://localhost:4000/assets/images/grafana_post/img_14.jpg">
+    <img src="http://localhost:4000/assets/images/grafana_post/img_14.jpg" alt="" />
+    <figcaption>Fig.Querying the measurement ‘virtualUsers’</figcaption>
+    </a>
+</figure>
+
+<h2 id="telegraf"><strong>Telegraf</strong></h2>
+
+<p>Telegraf is an open source plugin-driven agent used to collect
+server metrics. The types of metrics to be collected can be
+customized by adding new plugins or editing existing ones. The goal
+of using this server agent is to collect the server metrics from the
+server where the application is being hosted and have them delivered
+to the backend which in our case is InfluxDB which can then be
+viewed live from Grafana as earlier.</p>
+
+<h3 id="installing-telegraf-as-a-windows-service"><strong>Installing Telegraf as a Windows Service</strong></h3>
+
+<ol>
+  <li>
+    <p>Download Telegraf from the url below which will download the
+packaged in a zipped format.</p>
+
+    <p><a href="https://portal.influxdata.com/downloads/">https://portal.influxdata.com/downloads/</a></p>
+  </li>
+  <li>
+    <p>Extract the contents on a destination folder. The folder should
+contain a ‘<em>telegraf.conf</em>’ file containing the Telegraf
+configurations.</p>
+  </li>
+</ol>
+
+<figure class="align-center">
+    <a href="http://localhost:4000/assets/images/grafana_post/img_15.jpg">
+    <img src="http://localhost:4000/assets/images/grafana_post/img_15.jpg" alt="" />
+    </a>
+</figure>
+
+<p>Inside the config file, there are multiple options to collect the
+ server metrics as well as other configuration options. For example,
+ under the ‘<strong>[agent]</strong>’, there are options which can be configured
+ to select how the metrics will be collected.</p>
+
+<p>For example, the ‘<strong>interval</strong>’ config option is used to set the
+ duration of the metric being collected.</p>
+
+<figure class="align-center" style="width:480px">
+        <a href="http://localhost:4000/assets/images/grafana_post/img_16.jpg">
+        <img src="http://localhost:4000/assets/images/grafana_post/img_16.jpg" alt="" />
+        </a>
+</figure>
+
+<p>We can leave these options as it is for now. The main focus is on the
+ ‘outputs’ section of this config file. It is here where the output
+ format and destinations are specified.</p>
+
+<p>For example, if the InfluxDB is being hosted locally on port 8086 and
+ the metrics are to be collected in a database named ‘jmeterStress’,
+ then the following configurations should be specified under the
+ <strong>[[outputs.influxdb]]</strong> section, which is an output plugin of
+ Telegraf.</p>
+
+<figure class="align-center">
+        <a href="http://localhost:4000/assets/images/grafana_post/img_17.jpg">
+        <img src="http://localhost:4000/assets/images/grafana_post/img_17.jpg" alt="" />
+        </a>
+</figure>
+
+<p>Now that the backend details are set up, we need to specify which
+ metrics are to be collected. This can be set up under the
+ ‘<strong>[[inputs.win_perf_counters]]</strong>’ plugin configuration. Some of
+ the common metric options are CPU usage, Process metrics, Disk time
+ and queues, Network metrics etc.</p>
+
+<p>Details of other options are in the url below :</p>
+
+<p><a href="https://github.com/influxdata/telegraf/tree/master/plugins/inputs/win_perf_counters">https://github.com/influxdata/telegraf/tree/master/plugins/inputs/win_perf_counters</a></p>
+
+<p>Once these configurations are done the telegraf agent starts sending
+ out the metrics to the backend at the specified interval which can
+ then be shown over Grafana in a live manner.</p>
+
+<figure class="align-center" style="width:280px">
+        <a href="http://localhost:4000/assets/images/grafana_post/img_18.jpg">
+        <img src="http://localhost:4000/assets/images/grafana_post/img_18.jpg" alt="" />
+        <figcaption>Fig. Measurements being collected at InfluxDB from Telegraf</figcaption>
+        </a>
+</figure>
+
+<p>These metrics can then be represented in Grafana by using any one of
+ the available templates in the url below :</p>
+
+<p><a href="https://grafana.com/grafana/dashboards?dataSource=influxdb&amp;search=telegraf">https://grafana.com/grafana/dashboards?dataSource=influxdb&amp;search=telegraf</a></p>
+
+<figure class="align-center">
+        <a href="http://localhost:4000/assets/images/grafana_post/img_19.jpg">
+        <img src="http://localhost:4000/assets/images/grafana_post/img_19.jpg" alt="" />
+        <figcaption>Fig. The server metrics being displayed in the Grafana dashboard</figcaption>
+        </a>
+</figure>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#technology" class="page__taxonomy-item" rel="tag">technology</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-10-13T00:00:00+05:45">October 13, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Grafana+for+real+time+JMeter+test+monitoring%20http%3A%2F%2Flocalhost%3A4000%2Ftechnology%2Fimplementing-grafana-with-influxdb-telegraf%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Ftechnology%2Fimplementing-grafana-with-influxdb-telegraf%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=http%3A%2F%2Flocalhost%3A4000%2Ftechnology%2Fimplementing-grafana-with-influxdb-telegraf%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Ftechnology%2Fimplementing-grafana-with-influxdb-telegraf%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/poetry/Revelations/" class="pagination--pager" title="Revelations
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/kamal.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/poetry/Revelations/" rel="permalink">Revelations
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "https://images.unsplash.com/photo-1435034568314-8303dbda4b8c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c48ac79506b3126f0ecfd5833e38973e&auto=format&fit=crop&w=752&q=80"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/poetry/%E0%A4%90%E0%A4%A8%E0%A4%BE%E0%A4%AD%E0%A4%BF%E0%A4%A4-%E0%A4%B0%E0%A4%95%E0%A5%8B-%E0%A4%AE%E0%A4%BE%E0%A4%A8-%E0%A4%9B%E0%A5%87/" rel="permalink">ऐनाभित्रको मान्छे
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">ऐनाभित्रको मान्छे
+ऐना भित्रको मान्छे
+ऐना बाहिरको मान्छे
+के एक हुन् ?
+ती एक हुन?
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/mutton_curry_post/teaser.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/cooking/shyam's-mutton-curry-special/" rel="permalink">Mutton Curry for Dummies
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  7 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Confession
+Despite all the hullabaloo behind me cooking a rare mutton curry to delight the taste-buds, I would have to stop beating behind the bush and thank...</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "https://images.unsplash.com/photo-1435034568314-8303dbda4b8c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c48ac79506b3126f0ecfd5833e38973e&auto=format&fit=crop&w=752&q=80"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/poetry/circus/" rel="permalink">Circus
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+      <li><a href="https://github.com/shyambh"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+      <li><a href="https://bitbucket.org/shyambh"><i class="fab fa-fw fa-bitbucket" aria-hidden="true"></i> Bitbucket</a></li>
+    
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2019 Shyam Bhattarai. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+  </body>
+</html>

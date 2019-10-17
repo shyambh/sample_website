@@ -3,7 +3,7 @@ title: "Mutton Curry for Dummies"
 classes: single
 toc: true
 toc_label: "Sections"
-toc_icon: "heart"
+toc_icon: "compass"
 categories:
   - cooking
 header:
