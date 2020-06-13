@@ -43,4 +43,9 @@ var store = [{
         "excerpt":"Motivation The JMeter tests run are run in a periodic basis as part of thescheduled performance tests. The test reports including various metricsand details are generated after the completion of the test run. It wouldbe advantageous to the team if the test status could be monitored inreal time so that...","categories": ["technology"],
         "tags": [],
         "url": "http://localhost:4000/technology/implementing-grafana-with-influxdb-telegraf/",
-        "teaser":"http://localhost:4000/assets/images/grafana_post/grafana_logo.jpg"}]
+        "teaser":"http://localhost:4000/assets/images/grafana_post/grafana_logo.jpg"},{
+        "title": "An Arranged Date - A Short Story",
+        "excerpt":"He was sitting awkwardly inside the cafe when I first met him. I could see from the counter itself that he was fidgeting with his phone and then with his hair again. Well, it wasn’t the most pleasant day to be outside anyway, especially since it had been raining cats...","categories": ["stories"],
+        "tags": [],
+        "url": "http://localhost:4000/stories/an-arranged-date/",
+        "teaser":"http://localhost:4000/assets/images/an_arranged_date_post/cafe_raining.jpg"}]
