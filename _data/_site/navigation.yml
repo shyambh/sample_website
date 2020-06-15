@@ -1,0 +1,15 @@
+# main links
+main:
+   - title: "Home"
+     url: /
+
+   - title: "About"
+     url: /about
+
+   - title: "Posts By Year"
+     url: /year-archive/
+
+   - title: "Collections"
+     url: /collection-archive/
+  # - title: "Sitemap"
+  #   url: /sitemap/
