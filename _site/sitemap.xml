@@ -5,6 +5,10 @@
 <lastmod>2011-07-07T00:00:00+05:45</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/poetry/Women/</loc>
+<lastmod>2014-06-15T00:00:00+05:45</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/poetry/life-a-miracle/</loc>
 <lastmod>2018-03-26T00:00:00+05:45</lastmod>
 </url>
@@ -106,6 +110,9 @@
 </url>
 <url>
 <loc>http://localhost:4000/page2/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/page3/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/googleb832056481761258.html</loc>

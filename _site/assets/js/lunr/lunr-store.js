@@ -4,6 +4,11 @@ var store = [{
         "tags": [],
         "url": "http://localhost:4000/poetry/%E0%A4%95%E0%A5%8C%E0%A4%B8%E0%A5%80/",
         "teaser":"http://localhost:4000/assets/images/kausi.jpg"},{
+        "title": "Women",
+        "excerpt":"I dont know what feminism isOr the threads of its beliefWhat I believe is that men and women existhalf of a four clover leaf But alas, its a world where men often forgetthat they were once a sonwho couldn&#8217;t take two nimblest of stepswithout holding their mother&#8217;s thumb Women can...","categories": ["poetry"],
+        "tags": [],
+        "url": "http://localhost:4000/poetry/Women/",
+        "teaser":"http://localhost:4000/assets/images/women_post/woman.jpeg"},{
         "title": "Life : A Miracle",
         "excerpt":"Photo from UnsplashLife is a miracle if you want it to beOr, an endless tunnel, with no light you can seeBut the sun, the moon and the air is the sameyou can live in a moment&#8217;s blush, or you can die again I wish I was a mystic, high up...","categories": ["poetry"],
         "tags": [],
