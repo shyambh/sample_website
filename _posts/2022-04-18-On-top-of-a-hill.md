@@ -6,6 +6,10 @@ header:
   teaser: /assets/images/top-of-the-hill.jpg
 ---
 
+{% include base_path %}
+
+<img src="/assets/images/top-of-the-hill.jpg" width="400">
+
 The silence of the hills  
 beneath a thin veil of blue  
 criss-crossed by the careless streams  

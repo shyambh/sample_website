@@ -6,6 +6,10 @@ header:
   teaser: /assets/images/reconcile.jpg
 ---
 
+{% include base_path %}
+
+<img src="/assets/images/reconcile.jpg" width="400">
+
 Yesterday was a tumultuous night  
 densely dark and a raging surge  
 a night like no night before  
